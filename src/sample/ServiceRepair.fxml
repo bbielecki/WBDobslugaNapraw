@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane minHeight="426.0" minWidth="600.0" prefHeight="485.0" prefWidth="778.0" stylesheets="@background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ServiceRepairController">
+   <bottom>
+      <AnchorPane minHeight="146.0" minWidth="600.0" prefHeight="146.0" prefWidth="638.0" stylesheets="@background.css" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="clearButton" cancelButton="true" layoutX="348.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clearAction" prefHeight="28.0" prefWidth="82.0" text="Clear Filtr" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="340.0">
+               <effect>
+                  <Lighting diffuseConstant="1.44" specularConstant="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#b3e1ff" />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+            <DatePicker fx:id="repairDate" layoutX="189.0" layoutY="36.0" prefHeight="25.0" prefWidth="150.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="189.0" />
+            <Label layoutX="37.0" layoutY="36.0" prefHeight="25.0" prefWidth="136.0" text="Repair Date" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="37.0" />
+            <Label layoutX="37.0" layoutY="78.0" prefHeight="25.0" prefWidth="136.0" text="Repair Status" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="37.0" />
+            <Label layoutX="439.0" layoutY="36.0" prefHeight="25.0" prefWidth="136.0" text="Kind Of Repair" AnchorPane.bottomAnchor="85.0" AnchorPane.rightAnchor="203.0" />
+            <Label layoutX="340.0" layoutY="-2.0" prefHeight="33.0" prefWidth="99.0" text="Filtr Options:" textAlignment="CENTER" textFill="#377f00">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="repairStatusChoiceBox" layoutX="188.0" layoutY="78.0" prefWidth="150.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="189.0" />
+            <DatePicker fx:id="afterDatePicker" layoutX="615.0" layoutY="78.0" onAction="#onAfterDateSelection" prefHeight="25.0" prefWidth="150.0" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="14.0" />
+            <Label layoutX="439.0" layoutY="78.0" prefHeight="25.0" prefWidth="150.0" text="Repairs After Selected Date" AnchorPane.bottomAnchor="43.0" AnchorPane.rightAnchor="189.0" />
+            <TextField fx:id="kindOfRepairText" layoutX="615.0" layoutY="36.0" AnchorPane.bottomAnchor="85.0" AnchorPane.rightAnchor="14.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane minHeight="234.0" minWidth="600.0" prefHeight="234.0" prefWidth="638.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="serviceTable" layoutX="11.0" layoutY="13.0" prefHeight="207.0" prefWidth="616.0" style="-fx-background-color: lightskyblue;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="13.0" />
+            <Button fx:id="refreshButton" layoutX="340.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshAction" prefHeight="29.0" prefWidth="98.0" text="Refresh" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="340.0">
+               <effect>
+                  <Lighting diffuseConstant="1.44" specularConstant="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#b3e1ff" />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

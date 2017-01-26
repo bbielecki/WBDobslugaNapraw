@@ -1,32 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RepairHistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RepairHistoryController">
    <children>
-      <TableView fx:id="historyTable" layoutX="14.0" layoutY="14.0" prefHeight="289.0" prefWidth="673.0" AnchorPane.bottomAnchor="304.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="14.0" />
-      <DatePicker fx:id="repairDate" layoutX="186.0" layoutY="340.0" prefHeight="25.0" prefWidth="150.0" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="186.0" />
-      <Label layoutX="14.0" layoutY="340.0" prefHeight="25.0" prefWidth="136.0" text="Repair Date" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="14.0" />
-      <Label layoutX="14.0" layoutY="382.0" prefHeight="25.0" prefWidth="136.0" text="Repair Status" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="14.0" />
-      <Label layoutX="14.0" layoutY="423.0" prefHeight="25.0" prefWidth="136.0" text="Kind Of Repair" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="14.0" />
-      <Label layoutX="100.0" layoutY="304.0" prefHeight="33.0" prefWidth="99.0" text="Filtr Options:" textAlignment="CENTER" textFill="#378000" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="100.0">
-         <font>
-            <Font name="System Bold" size="16.0" />
-         </font>
-      </Label>
-      <ChoiceBox fx:id="repairStatusChoiceBox" layoutX="186.0" layoutY="382.0" prefWidth="150.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="186.0" />
-      <ChoiceBox fx:id="kindOfRepairChoiceBox" layoutX="186.0" layoutY="423.0" prefWidth="150.0" AnchorPane.bottomAnchor="159.0" AnchorPane.leftAnchor="186.0" />
-      <Button layoutX="616.0" layoutY="568.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="32.0" />
-      <Button fx:id="refreshButton" layoutX="106.0" layoutY="456.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="88.0" text="Refresh" textFill="#6f6e6e" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="106.0">
+      <TableView fx:id="historyTable" layoutX="14.0" layoutY="14.0" prefHeight="235.0" prefWidth="832.0" AnchorPane.bottomAnchor="326.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="14.0" />
+      <TabPane layoutX="204.0" layoutY="253.0" prefHeight="326.0" prefWidth="642.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="-4.0" AnchorPane.rightAnchor="13.0">
+        <tabs>
+          <Tab text="Insertion Mode">
+               <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="600.0">
+                     <children>
+                        <TextField fx:id="enterCodeText" layoutX="248.0" layoutY="136.0" promptText="provide unique code" AnchorPane.leftAnchor="248.0" AnchorPane.topAnchor="136.0" />
+                        <Label fx:id="enterLabel" layoutX="255.0" layoutY="92.0" text="Enable Isertion Mode" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="92.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="enterButton" layoutX="281.0" layoutY="181.0" mnemonicParsing="false" onAction="#enterAction" prefHeight="34.0" prefWidth="83.0" text="Enter" textFill="#6f6e6e" AnchorPane.leftAnchor="281.0" AnchorPane.topAnchor="181.0">
+                           <effect>
+                              <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#b3e1ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="insertKindText" layoutX="99.0" layoutY="68.0" promptText="Kind Of Repair" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="68.0" />
+                        <TextField fx:id="insertPriceText" layoutX="99.0" layoutY="112.0" promptText="Repair Price" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="112.0" />
+                        <DatePicker fx:id="insertRepairDate" layoutX="397.0" layoutY="67.0" promptText="Repair Date" AnchorPane.leftAnchor="397.0" AnchorPane.topAnchor="67.0" />
+                        <ChoiceBox fx:id="insertRepairStatusChoice" layoutX="396.0" layoutY="112.0" prefHeight="25.0" prefWidth="175.0" AnchorPane.leftAnchor="396.0" AnchorPane.topAnchor="112.0" />
+                        <Button fx:id="insertButton" layoutX="261.0" layoutY="199.0" mnemonicParsing="false" onAction="#insertAction" prefHeight="33.0" prefWidth="123.0" text="Insert Repair" textFill="#6f6e6e" AnchorPane.leftAnchor="261.0" AnchorPane.topAnchor="199.0">
+                           <effect>
+                              <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#b3e1ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="infoLabel" layoutX="429.0" layoutY="140.0" prefHeight="17.0" prefWidth="123.0" textAlignment="CENTER" textFill="#a80606" />
+                        <Label fx:id="insertInfo" layoutX="71.0" layoutY="161.0" prefHeight="108.0" prefWidth="161.0" textFill="#dd5555" />
+                        <Button fx:id="refreshButton1" layoutX="429.0" layoutY="199.0" mnemonicParsing="false" onAction="#refreshAction" prefHeight="33.0" prefWidth="111.0" text="Show Repairs" textFill="#6f6e6e">
+                           <effect>
+                              <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#b3e1ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+            <Tab text="Modify Mode">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="enterModifyButton" layoutX="280.0" layoutY="176.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enterAction" prefHeight="34.0" prefWidth="83.0" text="Enter" textFill="#6f6e6e" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="280.0">
+                           <effect>
+                              <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#b3e1ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="enterModifyLabel" layoutX="239.0" layoutY="87.0" text="Enable Modification Mode">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="enterModifyText" layoutX="247.0" layoutY="131.0" promptText="provide unique code" />
+                        <ChoiceBox fx:id="modifyStatusChoice" layoutX="89.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="89.0" />
+                        <DatePicker fx:id="modifyDate" layoutX="403.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="177.0" AnchorPane.leftAnchor="403.0" />
+                        <Label fx:id="modifyStatusLabel" layoutX="92.0" layoutY="67.0" text="Modify Status of Repair" textFill="#509724">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="modifyDateLabel" layoutX="422.0" layoutY="67.0" text="Modify Date of Repair" textFill="#509724">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="modifyButton" layoutX="260.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#modifyAction" prefHeight="33.0" prefWidth="123.0" text="Modify" textFill="#6f6e6e" AnchorPane.bottomAnchor="132.0" AnchorPane.leftAnchor="260.0">
+                           <effect>
+                              <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#b3e1ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="modifyInfoLabel" layoutX="84.0" layoutY="139.0" prefHeight="108.0" prefWidth="161.0" textFill="#dd5555" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Filtr Options">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <DatePicker fx:id="repairDate" layoutX="333.0" layoutY="59.0" prefHeight="25.0" prefWidth="150.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="333.0" />
+                        <Label layoutX="159.0" layoutY="59.0" prefHeight="25.0" prefWidth="136.0" text="Repair Date" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="159.0" />
+                        <Label layoutX="159.0" layoutY="101.0" prefHeight="25.0" prefWidth="136.0" text="Repair Status" AnchorPane.bottomAnchor="171.0" AnchorPane.leftAnchor="159.0" />
+                        <Label layoutX="159.0" layoutY="142.0" prefHeight="25.0" prefWidth="136.0" text="Kind Of Repair" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="159.0" />
+                        <Label layoutX="260.0" layoutY="22.0" prefHeight="33.0" prefWidth="99.0" text="Filtr Options:" textAlignment="CENTER" textFill="#377f00" AnchorPane.bottomAnchor="242.0" AnchorPane.leftAnchor="260.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="repairStatusChoiceBox" layoutX="333.0" layoutY="101.0" prefWidth="150.0" AnchorPane.bottomAnchor="171.0" AnchorPane.leftAnchor="333.0" />
+                        <Button fx:id="refreshButton" layoutX="254.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshAction" prefHeight="33.0" prefWidth="111.0" text="Show Repairs" textFill="#6f6e6e" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="277.0">
+                           <font>
+                              <Font name="Arial Black" size="12.0" />
+                           </font>
+                           <effect>
+                              <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant color="#b3e1ff" />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Button>
+                        <DatePicker fx:id="afterDatePicker" layoutX="333.0" layoutY="182.0" onAction="#onAfterDateSelection" prefHeight="25.0" prefWidth="150.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="333.0" />
+                        <Label layoutX="159.0" layoutY="182.0" prefHeight="25.0" prefWidth="150.0" text="Repairs After Selected Date" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="159.0" />
+                        <Button fx:id="clearButton" cancelButton="true" layoutX="516.0" layoutY="182.0" mnemonicParsing="false" onAction="#clearFiltrAction" prefHeight="25.0" prefWidth="79.0" text="Clear Filtr" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="516.0" />
+                        <TextField fx:id="kindOfRepairText" layoutX="334.0" layoutY="144.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="showServiceHistoryButton" layoutX="36.0" layoutY="386.0" mnemonicParsing="false" onAction="#showServiceHistory" prefHeight="60.0" prefWidth="123.0" text="Service History" textFill="#6f6e6e" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="36.0">
+         <effect>
+            <Lighting diffuseConstant="1.35" specularConstant="0.0" specularExponent="12.09" surfaceScale="0.34">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#b3e1ff" />
+               </light>
+            </Lighting>
+         </effect>
          <font>
             <Font name="Arial Black" size="12.0" />
          </font>
       </Button>
-      <Separator layoutX="351.0" layoutY="304.0" orientation="VERTICAL" prefHeight="303.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="351.0" />
+      <Separator layoutX="201.0" layoutY="249.0" orientation="VERTICAL" prefHeight="326.0" prefWidth="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="652.0" />
    </children>
 </AnchorPane>

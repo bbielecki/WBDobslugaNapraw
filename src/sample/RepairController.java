@@ -37,10 +37,6 @@ public class RepairController implements Initializable {
 
     @FXML ChoiceBox statusChoiceBox;
 
-    @FXML ChoiceBox RepairTypeChoice;
-
-    @FXML DatePicker RepairDate;
-
     @FXML TableView RepairTable;
 
     private final String quotation = "\"";
@@ -53,8 +49,14 @@ public class RepairController implements Initializable {
 
         VehicleModelChoice.setItems(FXCollections.observableArrayList("maluch", "mercedes", "fiat", "toyota"));
         VehicleModelChoice.setTooltip(new Tooltip("select vehicle model"));
-        statusChoiceBox.setItems(FXCollections.observableArrayList("wolny","zajęty"));
+        statusChoiceBox.setItems(FXCollections.observableArrayList("wolny","zajety"));
         statusChoiceBox.setTooltip(new Tooltip("select status of vehicle"));
+
+        try {
+            showVehicles();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -62,7 +64,6 @@ public class RepairController implements Initializable {
     public void showVehicles() throws Exception{
 
         RepairTable.getColumns().clear();
-        int rowsNum = 0;
         int colNum = 0;
 
         String tableName = "pojazd";
@@ -70,11 +71,8 @@ public class RepairController implements Initializable {
         SQLcommands sqLcommands = new SQLcommands();
         ArrayList<String> columnName = new ArrayList<>(sqLcommands.getColumnsNames(tableName));
 
-        //columnName.add("nrPracownika");
-        //columnName.add("imie");
 
         colNum = sqLcommands.getNumberOfColumns(tableName);
-        rowsNum = sqLcommands.getRowsNumber(tableName);
         for (int i = 0; i < colNum; i++) {
             final int j = i;
             TableColumn col = new TableColumn(columnName.get(i));
@@ -94,16 +92,18 @@ public class RepairController implements Initializable {
         }
         if(!statusChoiceBox.getSelectionModel().isEmpty()){
             req = quotation+"status"+quotation+"='"+statusChoiceBox.getSelectionModel().getSelectedItem().toString()+"'";
-            requirements.add(statusChoiceBox.getSelectionModel().getSelectedItem().toString());
+            requirements.add(req);
         }
-        if(RepairDate.getValue() != null){
-            System.out.println(RepairDate.getValue());
-            requirements.add(RepairDate.getValue().toString());
-        }
-        ObservableList<ObservableList> table = sqLcommands.getTable(tableName,requirements,rowsNum,colNum);
+        ObservableList<ObservableList> table = sqLcommands.getTable(tableName,requirements,colNum);
 
         RepairTable.setItems(table);
+        sqLcommands.conn.close();
+    }
 
+    public void clearAction(){
+        VehicleModelChoice.getSelectionModel().clearSelection();
+        statusChoiceBox.getSelectionModel().clearSelection();
+        ShowButton.fire();
     }
 
     public void checkHistoryAction(){
@@ -119,26 +119,28 @@ public class RepairController implements Initializable {
             dialog.showAndWait();
         }
         else {
-            SelectedVehicle selectedVehicle = new SelectedVehicle();
-            selectedVehicle.id_pojazdu = Integer.decode(selectedCells.get(0).toString());
-            selectedVehicle.status = selectedCells.get(1).toString();
-            selectedVehicle.nazwa_modelu = selectedCells.get(2).toString();
-            selectedVehicle.id_typu_pojazdu = Integer.decode(selectedCells.get(3).toString());
 
+            SelectedVehicle.id_pojazdu = Integer.decode(selectedCells.get(0).toString());
+            SelectedVehicle.status = selectedCells.get(1).toString();
+            SelectedVehicle.nazwa_modelu = selectedCells.get(2).toString();
+            SelectedVehicle.id_typu_pojazdu = Integer.decode(selectedCells.get(3).toString());
+
+            System.out.println("SelectedVehicle.id_pojazdu = " + SelectedVehicle.id_pojazdu);
+            System.out.println("SelectedVehicle.id_typu_pojazdu = " + SelectedVehicle.id_typu_pojazdu);
+            System.out.println("SelectedVehicle.nazwa_modelu = " + SelectedVehicle.nazwa_modelu);
 
 
             try {
-                Parent repairHistory = FXMLLoader.load(getClass().getResource("RepairHistory.fxml"));
-                Scene repairHistoryScene = new Scene(repairHistory);
-                Stage repirHistoryStage = new Stage();
-                repirHistoryStage.setTitle("Vehicle Repair History");
-                repirHistoryStage.setScene(repairHistoryScene);
-                repirHistoryStage.setMinWidth(650);
-                repirHistoryStage.setMinHeight(540);
-                repirHistoryStage.setOnCloseRequest(event -> checkRepairHistoryButton.setDisable(false));
-                repirHistoryStage.show();
-                checkRepairHistoryButton.setDisable(true);
-
+                    Parent repairHistory = FXMLLoader.load(getClass().getResource("RepairHistory.fxml"));
+                    Scene repairHistoryScene = new Scene(repairHistory);
+                    Stage repairHistoryStage = new Stage();
+                    repairHistoryStage.setTitle("Vehicle Repair History");
+                    repairHistoryStage.setScene(repairHistoryScene);
+                    repairHistoryStage.setMinWidth(650);
+                    repairHistoryStage.setMinHeight(540);
+                    repairHistoryStage.setOnCloseRequest(event -> checkRepairHistoryButton.setDisable(false));
+                    repairHistoryStage.show();
+                    checkRepairHistoryButton.setDisable(true);
 
 
             } catch (Exception e) {

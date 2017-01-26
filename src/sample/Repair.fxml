@@ -1,26 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane minHeight="500.0" minWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RepairController">
+<BorderPane minHeight="426.0" minWidth="600.0" prefHeight="426.0" prefWidth="638.0" stylesheets="@background.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RepairController">
    <bottom>
-      <AnchorPane minHeight="180.0" minWidth="600.0" prefHeight="229.0" prefWidth="638.0" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="146.0" minWidth="600.0" prefHeight="146.0" prefWidth="638.0" stylesheets="@background.css" BorderPane.alignment="CENTER">
          <children>
-            <ChoiceBox fx:id="VehicleModelChoice" layoutX="150.0" layoutY="49.0" prefWidth="150.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="49.0" />
-            <ChoiceBox fx:id="statusChoiceBox" layoutX="150.0" layoutY="81.0" prefWidth="150.0" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="81.0" />
-            <Label layoutX="14.0" layoutY="47.0" prefHeight="25.0" prefWidth="136.0" text="Vehicle Model" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="47.0" />
-            <Label layoutX="14.0" layoutY="79.0" prefHeight="25.0" prefWidth="136.0" text="Vehicle status" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="79.0" />
+            <ChoiceBox fx:id="VehicleModelChoice" layoutX="312.0" layoutY="44.0" prefWidth="150.0" AnchorPane.leftAnchor="312.0" AnchorPane.topAnchor="44.0" />
+            <ChoiceBox fx:id="statusChoiceBox" layoutX="312.0" layoutY="76.0" prefWidth="150.0" AnchorPane.leftAnchor="312.0" AnchorPane.topAnchor="76.0" />
+            <Label layoutX="176.0" layoutY="42.0" prefHeight="25.0" prefWidth="136.0" text="Vehicle Model" AnchorPane.leftAnchor="176.0" AnchorPane.topAnchor="42.0" />
+            <Label layoutX="176.0" layoutY="74.0" prefHeight="25.0" prefWidth="136.0" text="Vehicle status" AnchorPane.leftAnchor="176.0" AnchorPane.topAnchor="74.0" />
+            <Button fx:id="clearButton" cancelButton="true" layoutX="346.0" layoutY="110.0" mnemonicParsing="false" onAction="#clearAction" prefHeight="28.0" prefWidth="82.0" text="Clear Filtr" AnchorPane.leftAnchor="346.0" AnchorPane.topAnchor="110.0">
+               <effect>
+                  <Lighting diffuseConstant="1.44" specularConstant="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#b3e1ff" />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
          </children>
       </AnchorPane>
    </bottom>
    <center>
-      <AnchorPane minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="637.0" BorderPane.alignment="CENTER">
+      <AnchorPane minHeight="234.0" minWidth="600.0" prefHeight="234.0" prefWidth="638.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="checkRepairHistoryButton" layoutX="448.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkHistoryAction" prefHeight="39.0" prefWidth="136.0" text="Check Repair History" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-            <TableView fx:id="RepairTable" layoutX="11.0" layoutY="34.0" prefHeight="182.0" prefWidth="576.0" AnchorPane.bottomAnchor="72.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="34.0" />
-            <Button fx:id="ShowButton" layoutX="20.0" layoutY="247.0" mnemonicParsing="false" onAction="#showVehicles" prefHeight="39.0" prefWidth="115.0" text="Show Vehicles" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0" />
+            <Button fx:id="checkRepairHistoryButton" layoutX="448.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkHistoryAction" prefHeight="39.0" prefWidth="136.0" text="Check Repair History" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+               <effect>
+                  <Lighting diffuseConstant="1.44" specularConstant="0.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant color="#b3e1ff" />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+            <TableView fx:id="RepairTable" layoutX="11.0" layoutY="13.0" prefHeight="207.0" prefWidth="616.0" style="-fx-background-color: lightskyblue;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="13.0">
+
+            </TableView>
+
+            <Button fx:id="ShowButton" layoutX="20.0" layoutY="247.0" mnemonicParsing="false" onAction="#showVehicles" prefHeight="39.0" prefWidth="115.0" text="Show Vehicles" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="20.0">
+            <effect>
+               <Lighting diffuseConstant="1.44" specularConstant="0.0" surfaceScale="0.0">
+                  <bumpInput>
+                     <Shadow />
+                  </bumpInput>
+                  <light>
+                     <Light.Distant color="#b3e1ff" />
+                  </light>
+               </Lighting>
+            </effect>
+         </Button>
          </children>
       </AnchorPane>
    </center>
